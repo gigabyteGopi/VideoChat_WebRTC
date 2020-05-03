@@ -15,11 +15,11 @@ const configuration = {
 };
 let room;
 let pc;
-
+var myStream;
 
 function onSuccess() {};
 function onError(error) {
-  console.error(error);
+  console.log(error);
 };
 
 drone.on('open', error => {
@@ -52,7 +52,7 @@ function sendMessage(message) {
 
 function startWebRTC(isOfferer) {
   pc = new RTCPeerConnection(configuration);
-
+  
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
   // message to the other peer through the signaling server
   pc.onicecandidate = event => {
@@ -71,6 +71,7 @@ function startWebRTC(isOfferer) {
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
     const stream = event.streams[0];
+    //myStream=stream;
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
     }
@@ -82,6 +83,7 @@ function startWebRTC(isOfferer) {
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
+    myStream=stream;
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
@@ -108,7 +110,60 @@ function startWebRTC(isOfferer) {
       );
     }
   });
+  
 }
+function mute(){
+  //connection.streams.mute();
+  var c=myStream.getTracks();
+  
+  //pc.mediaDevices.remoteVideo.track.muted=!pc.mediaDevices.remoteVideo.track.muted;
+  myStream.getTracks().forEach(track => track.muted = !track.muted);
+  console.log(c);
+  
+}
+
+var hangUpBtn=document.getElementById("hangUpBtn");
+hangUpBtn.addEventListener("click", function () { 
+  handleLeave(); 
+  
+  document.getElementById("remoteVideo").style.display="none";
+  document.getElementById("meetingEnd").style.display="inline-flex";
+  //window.document.body.load();
+  
+});
+
+function handleLeave() { 
+  
+
+  pc.ontrack = null;
+  pc.onremovetrack = null;
+  pc.onremovestream = null;
+  pc.onicecandidate = null;
+  pc.oniceconnectionstatechange = null;
+  pc.onsignalingstatechange = null;
+  pc.onicegatheringstatechange = null;
+  pc.onnegotiationneeded = null;
+
+  if (remoteVideo.srcObject) {
+    remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+  }
+
+  if (localVideo.srcObject) {
+    localVideo.srcObject.getTracks().forEach(track => track.stop());
+  }
+
+  pc.close();
+  pc = null;
+
+
+remoteVideo.removeAttribute("src");
+remoteVideo.removeAttribute("srcObject");
+localVideo.removeAttribute("src");
+remoteVideo.removeAttribute("srcObject");
+
+
+
+};
 
 function localDescCreated(desc) {
   pc.setLocalDescription(
