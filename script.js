@@ -131,7 +131,24 @@ hangUpBtn.addEventListener("click", function () {
   //window.document.body.load();
   
 });
-
+function toggleMute(){
+  //toggleBtn($("#mic-btn")); // toggle button colors
+  myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
+  myStream.getTracks().forEach(track => track.muted = !track.muted);
+  //$("#mic-icon").toggleClass('fa-microphone').toggleClass('fa-microphone-slash'); // toggle the mic icon
+  if ($("#muteIcon").hasClass('fa-microphone')) {
+    $("#muteIcon").removeClass('fa-microphone');
+    $("#muteIcon").addClass('fa-microphone-slash');
+    //myStream.getTracks().forEach(track => track.muted = !track.muted);// enable the local mic
+    //toggleVisibility("#mute-overlay", false); // hide the muted mic icon
+  } else {
+    $("#muteIcon").addClass('fa-microphone');
+    $("#muteIcon").removeClass('fa-microphone-slash');
+    //myStream.getTracks().forEach(track => track.muted = !track.muted); // mute the local mic
+    
+   // toggleVisibility("#mute-overlay", true); // show the muted mic icon
+  }
+}
 function handleLeave() { 
   
 
