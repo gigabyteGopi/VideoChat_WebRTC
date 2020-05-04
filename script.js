@@ -349,7 +349,7 @@ function stopRecording() {
   mediaRecorder.stop();
 }
 function invite(){
-  var borrowerLink='file:///C:/Users/Gopinath/Downloads/videoChat_webRtc/VideoChat_WebRTC/borrower.html#'+roomHash +"";
+  var borrowerLink=window.location.origin+'/borrower.html#'+roomHash +"";
   // $(".borrowerLink").val(borrowerLink);
   $(".borrowerLink").val(borrowerLink); 
 }
