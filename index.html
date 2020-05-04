@@ -58,7 +58,11 @@
     <button class="record" id="record">Start Recording</button>
     <button class="record" id="invite" onclick="invite()">Invite</button>
   </div>
-  <input type="text" class="borrowerLink" value="" />
+  <div class="borrowerValue-panel commonStyle float-left w-100">
+    <input type="text" class="borrowerLink" value="" />
+    <button class="copyBtn" onclick="copy()">copy</button>
+  </div>
+  
   <div class="showEnd-panel" id="meetingEnd">
     <p>Your meeting has ended</p>
   </div>

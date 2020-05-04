@@ -349,7 +349,8 @@ function stopRecording() {
   mediaRecorder.stop();
 }
 function invite(){
-  var borrowerLink=window.location.origin+'/borrower.html#'+roomHash +"";
+  //var borrowerLink=window.location.origin+'/borrower.html#'+roomHash +"";//server url
+  var borrowerLink='file:///C:/Users/Gopinath/Downloads/videoChat_webRtc/VideoChat_WebRTC/borrower.html#'+roomHash +"";
   // $(".borrowerLink").val(borrowerLink);
   $(".borrowerLink").val(borrowerLink); 
 }
@@ -390,6 +391,16 @@ document.querySelector('button#start').addEventListener('click', async () => {
   console.log('Using media constraints:', constraints);
   await init(constraints);
 });
+function copy(){
+  
+
+  /* Select the text field */
+  $(".borrowerLink").select();
+  //$(".borrowerLink").setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
 
 
 

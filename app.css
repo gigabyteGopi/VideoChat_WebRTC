@@ -129,3 +129,19 @@ body{
 .borrowerVideo-panel{
     display: none;
 }
+.borrowerValue-panel{
+    padding: 0px 20px;
+}
+.borrowerValue-panel>input{
+    width: 80%;
+    padding: 8px 10px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.copyBtn{
+    background:white;
+    border:1px solid grey;
+    padding: 8px 10px;
+    color: grey;
+    border-radius: 4px;
+}
