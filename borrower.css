@@ -19,31 +19,28 @@ body{
 .float-left{
     float: left;
 }
-.main-section{
-    padding: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.borrowerJoin{
+    background: #fd3030;
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: 1px solid #fd3030;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-left:20px;
 }
-.remoteVideo-panel{
-    width: 40%;
-    height: 50vh;
-    float: left;
-    
-}
+
 .remoteVideo-panel>video{
-    height: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px grey;
+    height: 100vh;
     object-fit: cover;
-    background-color: white;
 }
 .localVideo-panel{
-    position: relative;
-    width: 40%;
-    height: 50vh;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: 20px;
+    bottom: 20px;
     z-index: 9;
-    margin-right: 30px;
 }
 .localVideo-panel>video{
     height: 100%;
@@ -53,19 +50,28 @@ body{
     background-color: white;
 }
 .controls-panel{
-    position: relative;
+    position: absolute;
     width: 100%;
     float: left;
-    /* left: 0; */
-    /* bottom: 0; */
+    left: 0;
+    bottom: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* background: rgba(0, 0, 0, .8); */
-    /* min-height: 60px; */
+    background: rgba(0, 0, 0, .8);
+    min-height: 60px;
     padding: 10px;
 }
 .showEnd-panel{
+    display: none;
+}
+.controls-panel{
+    display: none;
+}
+.main-section:hover .controls-panel{
+    display: inline-flex;
+}
+.localVideo-panel:hover +.controls-panel{
     display: none;
 }
 .endCallBtn{
@@ -75,21 +81,18 @@ body{
     height: 50px;
     width: 50px;
 }
-.controls-panel>button{
-    margin-right: 20px;
-}
 .muteBtn{
     border-radius: 50%;
     height: 50px;
     width: 50px;
     border: 1px solid grey;
-    background: #4e4e4e;
+    background: transparent;
     color: white;
-    
+    margin-right: 20px;
     box-shadow: 0px 0px 10px 0px #4c4c4c;
 }
 .muteBtn i{
-    font-size: 22px;
+    font-size: 26px;
 }
 .endCallBtn i{
     transform: rotate(135deg);
@@ -104,28 +107,8 @@ body{
     width: 100%;
     height: 100vh;
     font-size: 20px;
+    margin: 0;
 }
-.takePhoto{
-    padding: 8px 20px;
-    border: 1px solid #188218;
-    background: #188218;
-    color: white;
-    font-size: 14px;
-    border-radius: 4px;
-    text-transform: uppercase;
-}
-.record{
-    background: #fd3030;
-    padding: 8px 20px;
-    border-radius: 4px;
-    border: 1px solid #fd3030;
-    color: white;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-#canvas{
-    display: none;
-}
-.borrowerVideo-panel{
+.main-section{
     display: none;
 }

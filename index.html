@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
@@ -38,25 +39,34 @@
 </head>
 <body>
   <div class="main-section commonStyle w-100 float-left" >
-    
+    <div class="localVideo-panel commonStyle w-100 float-left" onclick="toggleVideoStreaming()">
+      <video id="localVideo" class="commonStyle w-100 float-left" autoplay muted></video>
+    </div>
     <div class="remoteVideo-panel">
       <video id="remoteVideo" class="commonStyle w-100 float-left" autoplay></video>
       <p  class="showEnd-panel" id="meetingEnd">Your meeting has ended</p>
     </div>
-    <div class="localVideo-panel commonStyle w-100 float-left" onclick="toggleVideoStreaming()">
-      <video id="localVideo" class="commonStyle w-100 float-left" autoplay muted></video>
-    </div>
-    <div class="controls-panel">
-      <!-- fa-microphone-slash -->
-      <button class="muteBtn" id="muteBtn" onclick="toggleMute()"><i class="fa fa-microphone" id="muteIcon" aria-hidden="true"></i></button>
-      <button class="endCallBtn" id="hangUpBtn"><i class="fa fa-phone" aria-hidden="true"></i></button>
-      
-    </div>
+   
+    
   </div>
+  <div class="controls-panel">
+    <!-- fa-microphone-slash -->
+    <button class="record" id="start">start</button>
+    <button class="muteBtn" id="muteBtn" onclick="toggleMute()"><i class="fa fa-microphone" id="muteIcon" aria-hidden="true"></i></button>
+    <button class="endCallBtn" id="hangUpBtn"><i class="fa fa-phone" aria-hidden="true"></i></button>
+    <button class="takePhoto" id="takePhoto">Take Photo</button>
+    <button class="record" id="record">Start Recording</button>
+    <button class="record" id="invite" onclick="invite()">Invite</button>
+  </div>
+  <input type="text" class="borrowerLink" value="" />
   <div class="showEnd-panel" id="meetingEnd">
     <p>Your meeting has ended</p>
   </div>
-  
+  <div class="imgpanel commonStyle float-left w-100">
+    <canvas id="canvas">
+    </canvas>
+    
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

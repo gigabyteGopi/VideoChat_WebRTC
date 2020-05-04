@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="borrower.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  
+</head>
+<body>
+  <button class="borrowerJoin" id="join" onclick="join()">Join</button>
+  
+  <div class="main-section commonStyle w-100 float-left" >
+    
+    <div class="remoteVideo-panel">
+      <video id="remoteVideo" class="commonStyle w-100 float-left" autoplay></video>
+      <p class="showEnd-panel" id="meetingEnd">Your meeting has ended</p>
+    </div>
+    <div class="localVideo-panel commonStyle w-100 float-left" onclick="toggleVideoStreaming()">
+        <video id="localVideo" class="commonStyle w-100 float-left" autoplay muted></video>
+      </div>
+    <div class="controls-panel">
+        <!-- fa-microphone-slash -->
+        
+        <button class="muteBtn" id="muteBtn" onclick="toggleMute()"><i class="fa fa-microphone" id="muteIcon" aria-hidden="true"></i></button>
+        <button class="endCallBtn" id="hangUpBtn"><i class="fa fa-phone" aria-hidden="true"></i></button>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="showEnd-panel" id="meetingEnd">
+    <p>Your meeting has ended</p>
+  </div>
+  <script src="borrowerScript.js"></script>
+</body>
+</html>
