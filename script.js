@@ -15,8 +15,8 @@ const configuration = {
 };
 let room;
 let pc;
-var myStream;
-
+var localStream;
+var remoteStream;
 function onSuccess() {};
 function onError(error) {
   console.log(error);
@@ -74,6 +74,7 @@ function startWebRTC(isOfferer) {
     //myStream=stream;
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
+      remoteStream=stream;
     }
   };
 
@@ -83,7 +84,7 @@ function startWebRTC(isOfferer) {
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
-    myStream=stream;
+    localStream=stream;
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
@@ -114,10 +115,10 @@ function startWebRTC(isOfferer) {
 }
 function mute(){
   //connection.streams.mute();
-  var c=myStream.getTracks();
+  var c=localStream.getTracks();
   
   //pc.mediaDevices.remoteVideo.track.muted=!pc.mediaDevices.remoteVideo.track.muted;
-  myStream.getTracks().forEach(track => track.muted = !track.muted);
+  localStream.getTracks().forEach(track => track.muted = !track.muted);
   console.log(c);
   
 }
@@ -133,7 +134,7 @@ hangUpBtn.addEventListener("click", function () {
 });
 function toggleMute(){
   //toggleBtn($("#mic-btn")); // toggle button colors
-  myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
+  localStream.getAudioTracks()[0].enabled = !(localStream.getAudioTracks()[0].enabled);
   //myStream.getTracks().forEach(track => track.muted = !track.muted);
   //$("#mic-icon").toggleClass('fa-microphone').toggleClass('fa-microphone-slash'); // toggle the mic icon
   if ($("#muteIcon").hasClass('fa-microphone')) {
@@ -188,4 +189,14 @@ function localDescCreated(desc) {
     () => sendMessage({'sdp': pc.localDescription}),
     onError
   );
+}
+function toggleVideoStreaming(){
+  if(localVideo.srcObject==localStream){
+    remoteVideo.srcObject=localStream;
+    localVideo.srcObject=remoteStream;
+  }else{
+    remoteVideo.srcObject=remoteStream;
+    localVideo.srcObject=localStream;
+  }
+  // remoteVideo.srcObject=localVideo.srcObject;
 }
