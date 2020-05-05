@@ -16,6 +16,9 @@ body{
 .w-100{
     width: 100%;
 }
+.w-50{
+    width: 50%;
+}
 .float-left{
     float: left;
 }
@@ -144,4 +147,31 @@ body{
     padding: 8px 10px;
     color: grey;
     border-radius: 4px;
+}
+.questions-section{
+    padding: 30px;
+}
+.question{
+    margin-bottom: 20px;
+}
+.questionLabel{
+    font-size: 18px;
+    font-weight: 600;
+    color: grey;
+    margin-bottom: 10px;
+}
+.answer{
+    color: red;
+    padding: 8px 10px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.saveBtn{
+    color: white;
+    background: #2ea22e;
+    border: 1px solid #2ea22e;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 14px;
 }
